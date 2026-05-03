@@ -52,8 +52,8 @@ public class Addon extends LabyModAddon {
 		EventBus.register(new TablistRemoveListener());
 		EventBus.register(new ServerSwitchListener());
 		EventBus.register(new TeamUpdateListener());
-		FileUtil.setupAddonFiles(Arrays.asList("onetime", "recurring"));
 		FileUtil.migrate();
+		FileUtil.setupAddonFiles(Arrays.asList("onetime", "recurring"));
 		//JsonUtil depends on the addon files, so create the JSON file first
 		try {
 			jsonUtil = new JsonUtil(JsonUtil.readJsonFromFile(ADDON_FILE_PATH));
