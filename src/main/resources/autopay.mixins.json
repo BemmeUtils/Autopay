@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "de.bemmeutils.autopay.mixin.mixins",
+  "refmap": "autopay.mixins.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.7.11",
+  "mixins": [
+  ],
+  "client": [
+    "MixinNetHandlePlayClient"
+  ]
+}
