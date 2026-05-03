@@ -1,16 +1,44 @@
-### Why use this template?
-- Gradle 6.9.1 for faster building
-- Mixin support
+### Setup
+- Starte `gradlew setupDecompWorkspace`
+- Starte `gradlew idea`
+- Starte `gradlew genIntellijRuns`
+- Öffne das Projekt in IntelliJ IDEA
 
-### How to use
-- run `gradlew setupDecompWorkspace`
-- run `gradlew idea`
-- run `gradlew genIntellijRuns`
-- open the project in IntelliJ IDEA
-- The [Minecraft Dev](https://mcdev.io/) IntellJ plugin is recommended, but not required
+### Building
+- Starte `gradlew build`
 
-### Configuration 
-1. update `refmap` in `example_addon.mixins.json`
-2. rename `example_addon.mixins.json`
-3. update `gradle.properties`
-4. update `MIXIN_CONFIG` in the `MixinLoader` class
+### Features
+- unendlich, konfigurierbare Zahlungen
+- Discord Webhook/Nachrichten
+
+### Ingame-Commands
+- /ggap - Öffnet die Ingame-Command Übersicht
+
+### Mitwirken
+
+### 1. Fehler melden (Bug Reports)
+Wenn du einen Fehler findest, öffne bitte ein [Issue](https://github.com/BemmeUtils/Autopay/issues). Nutze die Vorlage und beschreibe:
+* Was hast du getan?
+* Was hast du als Ergebnis erwartet?
+* Was ist stattdessen passiert? (Gerne mit Screenshots oder Fehlermeldungen)
+
+### 2. Features vorschlagen
+Du hast eine Idee für eine neue Funktion?
+Bitte öffne ein Issue und markiere es mit dem Label `enhancement`.
+Ein Entwickler, oder du selber können, dieses dann umsetzen.
+
+### 3. Code-Änderungen einreichen (Pull Requests)
+Wenn du direkt am Code arbeiten möchtest, folge bitte diesem Workflow:
+
+1. Öffne bitte ein [Issue](https://github.com/BemmeUtils/Autopay/issues)
+2. **Forke** das Repository in deinen eigenen GitHub-Account.
+3. Erstelle einen neuen **Branch** für deine Änderungen:
+   ```bash
+   git checkout -b feature/mein-feature
+   ```
+   oder
+   ```bash
+   git checkout -b fix/bug-fix
+   ```
+4. **Committe** deine Änderungen mit einer aussagekräftigen Nachricht
+5. **Pushe** den Branch in deinen Fork und öffne einen **Pull Request (PR)** gegen unseren `main`-Branch. Verlinke in deiner Request dein Issue
