@@ -10,7 +10,6 @@ public class CitybuildUpdateListener implements EventHandler {
     @SuppressWarnings("unused")
     public void onCitybuildUpdate(CitybuildUpdateEvent event) {
         if (!Citybuild.getInstance().isOnGrieferGames()) return;
-        System.out.println(event.getCurrentCitybuild());
 
         String currentCitybuild = event.getCurrentCitybuild();
         if (currentCitybuild.isEmpty()) {
@@ -20,9 +19,7 @@ public class CitybuildUpdateListener implements EventHandler {
         }
 
         Citybuild.getInstance().setCitybuildType(CitybuildType.fromServerName(currentCitybuild));
-        System.out.println(Citybuild.getInstance().getCitybuildType());
         Citybuild.getInstance().setOnCityBuild(!Citybuild.getInstance().getCitybuildType().equals(CitybuildType.NONE));
-        System.out.println(Citybuild.getInstance().isOnCityBuild());
 
         if (Citybuild.getInstance().isOnCityBuild()) {
             Addon.setCitybuildJoinTime(System.currentTimeMillis());
