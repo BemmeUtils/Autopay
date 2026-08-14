@@ -87,7 +87,7 @@ public enum CitybuildType {
         String lower = serverName.toLowerCase();
 
         // Check special servers first
-        if (lower.contains("cbe")) return EVIL;
+        if (lower.contains("evil")) return EVIL;
         if (lower.contains("nature")) return NATURE;
         if (lower.contains("extrem")) return EXTREM;
         if (lower.contains("wasser")) return WASSER;
@@ -97,7 +97,7 @@ public enum CitybuildType {
         // Try to extract number for numbered servers
         for (int i = 1; i <= 22; i++) {
             if (lower.contains("cb" + i) ||
-                    lower.contains("citybuild" + i) ||
+                    lower.contains("citybuild " + i) ||
                     lower.contains("server" + i)) {
                 return fromId(i);
             }
