@@ -23,6 +23,7 @@ public abstract class MixinNetHandlePlayClient {
     @Inject(method = "handlePlayerListItem", at = @At("RETURN"))
     private void onHandlePlayerListItem(S38PacketPlayerListItem packetIn, CallbackInfo callbackInfo) {
         for (S38PacketPlayerListItem.AddPlayerData playerListItem : packetIn.getEntries()) {
+            new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(playerListItem);
             GameProfile gameProfile = playerListItem.getProfile();
             if (gameProfile == null || gameProfile.getId().toString().matches(".*-.*-.*-.*-0{12}")) continue;
             switch (packetIn.getAction()) {
@@ -40,9 +41,9 @@ public abstract class MixinNetHandlePlayClient {
 
     @Inject(method = "handleJoinGame", at = @At("TAIL"))
     private void onHandleJoinGame(S01PacketJoinGame packetIn, CallbackInfo callbackInfo) {
-        Minecraft minecraft = Minecraft.getMinecraft();
-        if (minecraft.getCurrentServerData() == null) return;
-        EventBus.post(new ServerSwitchEvent(minecraft.getCurrentServerData()));
+        // getCurrentServerData() is null when the client was started with --server/--port
+        // (typical on headless/Linux setups) - post the event anyway, listeners handle null.
+        EventBus.post(new ServerSwitchEvent(Minecraft.getMinecraft().getCurrentServerData()));
     }
 
     @Inject(method = "handleTeams", at = @At("TAIL"))

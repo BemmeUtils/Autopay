@@ -1,13 +1,13 @@
 package de.bemmeutils.autopay.event.events;
 
+import de.bemmeutils.autopay.utils.CitybuildServer;
+import lombok.Getter;
+
 public class CitybuildUpdateEvent {
-    private final String currentCitybuild;
+    @Getter
+    private final CitybuildServer citybuildServer;
 
-    public CitybuildUpdateEvent(String currentCitybuild) {
-        this.currentCitybuild = currentCitybuild;
-    }
-
-    public String getCurrentCitybuild() {
-        return currentCitybuild;
+    public CitybuildUpdateEvent(CitybuildServer citybuildServer) {
+        this.citybuildServer = citybuildServer;
     }
 }

@@ -6,7 +6,6 @@ import de.bemmeutils.autopay.utils.Citybuild;
 import net.minecraft.client.Minecraft;
 
 public class TablistRemoveListener implements EventHandler {
-    @SuppressWarnings("unused")
     public void onTablistRemove(TablistRemoveEvent event) {
         if (Minecraft.getMinecraft().thePlayer == null) return;
         if (Minecraft.getMinecraft().thePlayer.getGameProfile().equals(event.getGameProfile()) || Minecraft.getMinecraft().thePlayer.getGameProfile().getId().equals(event.getGameProfile().getId()))

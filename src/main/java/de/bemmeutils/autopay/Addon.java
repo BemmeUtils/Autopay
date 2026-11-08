@@ -39,7 +39,7 @@ public class Addon extends LabyModAddon {
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.GERMANY);
 	@Getter
 	@Setter
-	private static long citybuildJoinTime = 0;
+	private static volatile long citybuildJoinTime = 0;
 
 	@Getter
 	@Setter

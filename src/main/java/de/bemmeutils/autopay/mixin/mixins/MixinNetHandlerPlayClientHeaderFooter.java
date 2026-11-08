@@ -2,12 +2,14 @@ package de.bemmeutils.autopay.mixin.mixins;
 
 import de.bemmeutils.autopay.event.EventBus;
 import de.bemmeutils.autopay.event.events.CitybuildUpdateEvent;
+import de.bemmeutils.autopay.utils.CitybuildServer;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.play.server.S47PacketPlayerListHeaderFooter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import de.bemmeutils.autopay.utils.ThreadUtil;
 
 @Mixin(NetHandlerPlayClient.class)
 public abstract class MixinNetHandlerPlayClientHeaderFooter {
@@ -18,16 +20,19 @@ public abstract class MixinNetHandlerPlayClientHeaderFooter {
 
         String currentCitybuild;
         if (lines.length != 3) {
-            currentCitybuild = "";
+            currentCitybuild = "None";
         } else {
             String cbLine = lines[2].replaceAll("§.", "");
             if (!cbLine.startsWith("Aktueller Server: ")) {
-                currentCitybuild = "";
+                currentCitybuild = "None";
             } else {
                 currentCitybuild = cbLine.substring("Aktueller Server: ".length());
             }
         }
-
-        EventBus.post(new CitybuildUpdateEvent(currentCitybuild));
+        CitybuildServer citybuildServer = CitybuildServer.fromDisplayName(currentCitybuild);
+        if (citybuildServer == null) {
+            return;
+        }
+        ThreadUtil.postOnClientThread(new CitybuildUpdateEvent(citybuildServer));
     }
 }

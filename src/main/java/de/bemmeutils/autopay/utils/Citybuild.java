@@ -1,45 +1,32 @@
 package de.bemmeutils.autopay.utils;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Citybuild {
     private static Citybuild instance;
-
-    public boolean isOnCityBuild() {
-        return onCityBuild;
-    }
-
-    public void setOnCityBuild(boolean onCityBuild) {
-        this.onCityBuild = onCityBuild;
-    }
-
-    public boolean isOnGrieferGames() {
-        return onGrieferGames;
-    }
 
     public void setOnGrieferGames(boolean onGrieferGames) {
         this.onGrieferGames = onGrieferGames;
     }
 
-    public CitybuildType getCitybuildType() {
-        return citybuildType;
-    }
+    @Getter
+    @Setter
+    private volatile boolean onCityBuild;
+    private volatile boolean onGrieferGames = false;
+    @Getter
+    @Setter
+    private volatile CitybuildServer citybuildServer;
 
-    public void setCitybuildType(CitybuildType citybuildType) {
-        this.citybuildType = citybuildType;
-    }
-
-    private boolean onCityBuild = false;
-    private boolean onGrieferGames = false;
-    private CitybuildType citybuildType;
-
-    private Citybuild(boolean isOnGrieferGames, boolean isOnCitybuild, CitybuildType citybuildType) {
+    private Citybuild(boolean isOnGrieferGames, boolean isOnCitybuild, CitybuildServer citybuildServer) {
         this.onGrieferGames = isOnGrieferGames;
         this.onCityBuild = isOnCitybuild;
-        this.citybuildType = citybuildType;
+        this.citybuildServer = citybuildServer;
     }
 
     public static Citybuild getInstance() {
         if (instance == null) {
-            instance = new Citybuild(false, false, CitybuildType.NONE);
+            instance = new Citybuild(false, false, CitybuildServer.NONE);
         }
         return instance;
     }
